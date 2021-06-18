@@ -1,0 +1,9 @@
+Flask==1.1.2
+Flask-Cors==3.0.9
+gunicorn==20.0.4
+motifapi @ git+https://github.com/loopbio/python-motifapi.git@37d4e971d63c07bbcde65c3ee370bbd7a9769d0b
+requests==2.23.0
+python-dotenv==0.15.0
+flask_basicauth
+pandas
+datetime
