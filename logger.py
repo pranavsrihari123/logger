@@ -34,11 +34,13 @@ def data():
                 started = True
             if i[n]=='Log data: date/time':
                 n+=1
-                curr_datetime = i[n]
                 while (n<len(i) and i[n]):
+                    curr_datetime = i[n]
+                    if curr_datetime[0]!='2': 
+                        break
                     serials[len(serials)-1][curr_ser].append(j[n])
                     serials[len(serials)-1]['Date/Time'].append(curr_datetime)
-                    curr_datetime = increment_time(curr_datetime)
+                    #curr_datetime = increment_time(curr_datetime)
                     n+=1
         
         for s in serials:
@@ -54,12 +56,12 @@ def data():
         return send_file('output.xlsx', as_attachment=True)
 
 
-def increment_time(s):
-    format_string = "%m/%d/%Y %H:%M"
-    date_object = datetime.datetime.strptime(s, format_string)
-    delta1 = datetime.timedelta(minutes=1)
-    date_object += delta1
-    return date_object.strftime(format_string)
+#def increment_time(s):
+#    format_string = "%Y/%m/%d %H:%M:%S"
+#    date_object = datetime.datetime.strptime(s, format_string)
+#    delta1 = datetime.timedelta(minutes=1)
+#    date_object += delta1
+#    return date_object.strftime(format_string)
 
 
 
