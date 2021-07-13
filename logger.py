@@ -19,6 +19,7 @@ def data():
         output_data = pd.read_csv(file_1, encoding = "ISO-8859-1", names=['first', 'second'], keep_default_na=False).to_dict()
         serials = []
         dfs = []
+        sensor_id = []
         curr_ser = ''
         n=0
         started = False
@@ -28,6 +29,7 @@ def data():
             if i[n]=='Logger serial number:':
                 serial_no = j[n]
                 s = serial_no[len(serial_no)-5: len(serial_no)-2]
+                sensor_id.append(s)
                 curr_ser = s
                 d = {'Date/Time': [], s: []}
                 serials.append(d)
@@ -49,7 +51,7 @@ def data():
 
         with pd.ExcelWriter('output.xlsx') as writer:
             for t in range(len(dfs)):
-                s = "Sheet " + str(t+1)
+                s = sensor_id[t]
                 dfs[t].to_excel(writer, sheet_name=s, index=False)
 
 
